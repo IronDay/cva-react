@@ -1,4 +1,6 @@
-import { HtmlHTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
+import cn from "../utils/cn";
+import { cva } from "class-variance-authority";
 
 type CardProps =
   | (HTMLAttributes<HTMLDivElement> & {
@@ -34,6 +36,28 @@ type CardProps =
       className?: string;
     };
 
+const Card = ({
+  intent,
+  ...props
+}: CardProps & {
+  intent?: "brand" | "product" | "saveUp" | "category";
+}) => {
+  switch (props.type) {
+    case "category": {
+      const { img, title, className } = props;
+      return (
+        <div className={cn(cart({ intent }), className)}>
+          <img
+            className="w-full h-full object-cover rounded-lg backdrop-blur-lg "
+            src={img}
+            alt="category image"
+          />
+          <h3 className="w-full absolute top-0 mx-auto text-center">{title}</h3>
+        </div>
+      );
+    }
+  }
+};
 const cart = cva("", {
   variants: {
     intent: {
@@ -46,3 +70,5 @@ const cart = cva("", {
     },
   },
 });
+
+export default Card;
