@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 import cn from "../utils/cn";
 import { cva } from "class-variance-authority";
 import { IoIosStarOutline } from "react-icons/io";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
 
 type CardProps =
   | (HTMLAttributes<HTMLDivElement> & {
@@ -156,40 +157,47 @@ const Card = ({
           </div>
         </div>
       );
+    }
 
-      case "product": {
-        const { img, title, price, liked, description, className, star } = props;
-        return (
-          <div className="w-[283.5px] min-h-[370px] h-[370px] flex flex-col rounded-[15px]">
-            <div className="flex-1 h-1/2 rounded-t-[15px overflow-hidden">
-              <img
-                src={img}
-                alt="product image"
-                className="w-full h-full object-cover overflow-hidden rounded-t-[15px]"
-              />
-            </div>
-            <div className=" shrink inline-flex flex-col items-start gap-[8px] p-[8px] bg-[#C9C9C9] rounded-b-[15px] overflow-hidden">
-              <div className="flex justify-between w-full">
-                <div className="font-medium text-[20px]">{title}</div>
-                <div className="font-medium flex items-center">
-                  <p className="text-[14px] self-start">$</p>
-                  <p className="text-[20px]">{price}</p>
-                </div>
-              </div>
-              <p>{description}</p>
-              <div className="flex text-[#003D29]">
-                <IoIosStarOutline size={32} />
-                <IoIosStarOutline size={32} />
-                <IoIosStarOutline size={32} />
-                <IoIosStarOutline size={32} />
-                <IoIosStarOutline size={32} />
-              </div>
-              <button className="border border-[#003D29] rounded-full px-[20px] py-[8px] grow-0">
-                Add to cart
-              </button>
+    case "product": {
+      const { img, title, price, liked, description, className, star } = props;
+      return (
+        <div className="w-[283.5px] min-h-[370px] h-[370px] flex flex-col rounded-[15px]">
+          <div className="flex-1 h-1/2 rounded-t-[15px overflow-hidden relative">
+            <img
+              src={img}
+              alt="product image"
+              className="w-full h-full object-cover overflow-hidden rounded-t-[15px]"
+            />
+            <div
+              className="bg-[#F2F2F2] absolute top-[10px] p-1
+            right-[10px] flex justify-center items-center rounded-full"
+            >
+              <MdOutlineFavoriteBorder size={25} />
             </div>
           </div>
-        );
+          <div className=" shrink inline-flex flex-col items-start gap-[8px] p-[8px] bg-[#C9C9C9] rounded-b-[15px] overflow-hidden">
+            <div className="flex justify-between w-full">
+              <div className="font-medium text-[20px]">{title}</div>
+              <div className="font-medium flex items-center">
+                <p className="text-[14px] self-start">$</p>
+                <p className="text-[20px]">{price}</p>
+              </div>
+            </div>
+            <p>{description}</p>
+            <div className="flex text-[#003D29]">
+              <IoIosStarOutline size={32} />
+              <IoIosStarOutline size={32} />
+              <IoIosStarOutline size={32} />
+              <IoIosStarOutline size={32} />
+              <IoIosStarOutline size={32} />
+            </div>
+            <button className="border border-[#003D29] rounded-full px-[20px] py-[8px] grow-0">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      );
     }
   }
 };
