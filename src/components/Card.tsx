@@ -39,13 +39,22 @@ type CardProps =
       logo: string;
       deliveryTime: number;
       className?: string;
+    }
+  | {
+      type: "faq";
+      img: string;
+      title: string;
+      description: string;
+      className?: string;
+      imgBgdropColor?: string;
+      textColor: string;
     };
 
 const Card = ({
   intent,
   ...props
 }: CardProps & {
-  intent?: "brand" | "product" | "saveUp" | "category";
+  intent?: "brand" | "product" | "saveUp" | "category" | "faq";
 }) => {
   switch (props.type) {
     case "category": {
@@ -254,6 +263,41 @@ const Card = ({
               src={img}
               alt="save up image"
               className="w-full h-auto object-cover rounded-b-[15px] opacity-[85%]"
+            />
+          </div>
+        </div>
+      );
+    }
+    case "faq": {
+      const { description, img, title, textColor, imgBgdropColor } = props;
+
+      return (
+        <div className="w-[283px] h-[360px] border rounded-[8px] flex flex-col">
+          <div
+            className={
+              "flex-1 p-[10px] py-[10px] px-[20px] space-y-[27px] rounded-t-[8px]"
+            }
+            style={
+              {
+                backgroundColor: `${imgBgdropColor}`,
+              } as React.CSSProperties
+            }
+          >
+            <h3 className="font-medium text-[24px]">{title}</h3>
+            <p className="text-[14px]">{description}</p>
+          </div>
+          <div
+            className={`flex-1 rounded-b-[8px]`}
+            style={
+              {
+                backgroundColor: `${imgBgdropColor}`,
+              } as React.CSSProperties
+            }
+          >
+            <img
+              src={img}
+              alt="save up image"
+              className="w-full h-auto object-cover rounded-b-[8px] opacity-[85%]"
             />
           </div>
         </div>
