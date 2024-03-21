@@ -27,6 +27,9 @@ type CardProps =
       title: string;
       amount: number;
       description: string;
+      textColor?: string;
+      className?: string;
+      imgBgdropColor?: string;
     }
   | {
       type: "brand";
@@ -195,6 +198,63 @@ const Card = ({
             <button className="border border-[#003D29] rounded-full px-[20px] py-[8px] grow-0">
               Add to cart
             </button>
+          </div>
+        </div>
+      );
+    }
+
+    case "saveUp": {
+      const { amount, description, img, title, textColor, imgBgdropColor } =
+        props;
+
+      return (
+        <div className="w-[285px] h-[312px] border rounded-[15px] flex flex-col">
+          <div
+            className={"flex-1 p-[10px] rounded-t-[15px]"}
+            style={
+              {
+                backgroundColor: `${imgBgdropColor}`,
+              } as React.CSSProperties
+            }
+          >
+            <h3 className="font-medium text-[24px]">{title}</h3>
+            <div className="font-medium flex items-center">
+              <p
+                className={`text-[24px] self-start`}
+                style={
+                  {
+                    color: `${textColor}`,
+                  } as React.CSSProperties
+                }
+              >
+                $
+              </p>
+              <p
+                className={`text-[36px] font-medium`}
+                style={
+                  {
+                    color: `${textColor}`,
+                  } as React.CSSProperties
+                }
+              >
+                {amount}
+              </p>
+            </div>
+            <p className="text-[14px]">{description}</p>
+          </div>
+          <div
+            className={`flex-1 rounded-b-[15px]`}
+            style={
+              {
+                backgroundColor: `${imgBgdropColor}`,
+              } as React.CSSProperties
+            }
+          >
+            <img
+              src={img}
+              alt="save up image"
+              className="w-full h-auto object-cover rounded-b-[15px] opacity-[85%]"
+            />
           </div>
         </div>
       );
