@@ -1,16 +1,22 @@
-import Button from "./components/Button";
+import img from "./assets/macbook.jpg";
+import appleLogo from "./assets/apple.svg";
+import furniture from "./assets/furniture.jpg";
+import faq from "./assets/faq.jpg";
+import Card from "./components/Card";
 
 function App() {
   return (
     <div className="min-h-screen w-full flex justify-center items-center">
-      <Button
-        handleClick={(count: number) => alert(count)}
-        intent="secondary"
-        size="lg"
-        className="text-[8px] text-white"
-      >
-        Click Me
-      </Button>
+      <Card
+        title="Frequently Asked Questions"
+        description="Update on safe shopping in
+        our stores"
+        intent="faq"
+        type="faq"
+        imgBgdropColor="#EFD4CE"
+        textColor="#DA1A32"
+        img={faq}
+      />
     </div>
   );
 }
